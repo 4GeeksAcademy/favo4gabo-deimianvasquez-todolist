@@ -37,11 +37,10 @@ def sitemap():
     return generate_sitemap(app)
 
 @app.route('/user', methods=['GET'])
-def handle_hello():
-
-    response_body = {
-        "msg": "Hello, this is your GET /user response "
-    }
+ def get_users():
+        user_list = [{"Daniel, Deimian": user.name}]
+        response_body = {'msg': 'traer todos los usuarios de la API'}
+        return jsonify(response_body)
 
     return jsonify(response_body), 200
 
