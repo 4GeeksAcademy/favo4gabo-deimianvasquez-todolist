@@ -37,12 +37,11 @@ def sitemap():
     return generate_sitemap(app)
 
 @app.route('/user', methods=['GET'])
- def get_users():
-        user_list = [{"Daniel, Deimian": user.name}]
-        response_body = {'msg': 'traer todos los usuarios de la API'}
-        return jsonify(response_body)
+def get_users():
+    # user_list = [{"Daniel, Deimian": user.name}]
+    response_body = {'msg': 'traer todos los usuarios de la API'}
+    return jsonify(response_body)
 
-    return jsonify(response_body), 200
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
@@ -50,13 +49,13 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=PORT, debug=False)
 
 
-@app.route('/todos/<str:username>', methods=['GET'])
-def get_user_todos(username):
-    if username is None:
-        return jsonify({"message": "user not found"}), 404
-    todos =  Todo()
-    todos = todos.query.get(username)
-    if todos is None:
-        return jsonify({"message": "there are no todos here"}), 404
-    return jsonify(todos.serialize()), 200
+# @app.route('/todos/<str:username>', methods=['GET'])
+# def get_user_todos(username):
+#     if username is None:
+#         return jsonify({"message": "user not found"}), 404
+#     todos =  Todo()
+#     todos = todos.query.get(username)
+#     if todos is None:
+#         return jsonify({"message": "there are no todos here"}), 404
+#     return jsonify(todos.serialize()), 200
     
